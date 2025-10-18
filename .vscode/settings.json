@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        "WEB-INF\\classes"
+    ],
+    "java.project.referencedLibraries": [
+        "c:\\apache-tomcat-11.0.11\\lib\\servlet-api.jar"
+    ],
+    "liveServer.settings.port": 5501
+}

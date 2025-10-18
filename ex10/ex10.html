@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cricket Players</title>
+</head>
+<body>
+    <h2>Cricket Player Stats</h2>
+    <table id="playersTable" border="1">
+        <tr>
+            <th>Name</th>
+            <th>Team</th>
+            <th>Runs</th>
+        </tr>
+    </table>
+
+    <script>
+        fetch('ex10.xml')
+        .then(response => response.text())
+        .then(data => {
+            let parser = new DOMParser();
+            let xml = parser.parseFromString(data, "text/xml");
+            let players = xml.getElementsByTagName('player');
+            let table = document.getElementById('playersTable');
+
+            for (let i = 0; i < players.length; i++) {
+                let row = table.insertRow();
+                row.insertCell(0).innerHTML = players[i].getElementsByTagName('name')[0].textContent;
+                row.insertCell(1).innerHTML = players[i].getElementsByTagName('team')[0].textContent;
+                row.insertCell(2).innerHTML = players[i].getElementsByTagName('runs')[0].textContent;
+            }
+        });
+    </script>
+</body>
+</html>

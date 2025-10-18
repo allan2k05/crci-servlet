@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ex10.xsl"?>
+<players>
+    <player>
+        <name>Virat Kohli</name>
+        <team>India</team>
+        <runs>12000</runs>
+    </player>
+    <player>
+        <name>Steve Smith</name>
+        <team>Australia</team>
+        <runs>9500</runs>
+    </player>
+    <player>
+        <name>Joe Root</name>
+        <team>England</team>
+        <runs>10000</runs>
+    </player>
+</players>

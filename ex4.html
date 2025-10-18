@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cricket Tournament Registration</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #e6f0ff;
+    margin: 0;
+    padding: 0;
+  }
+
+  .form-container {
+    width: 450px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 25px 30px;
+  }
+
+  h2 {
+    text-align: center;
+    color: #0056b3;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  input[type="file"],
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .gender-group {
+    margin-top: 6px;
+  }
+
+  .gender-group label {
+    font-weight: normal;
+    margin-right: 15px;
+  }
+
+  .checkbox-group {
+    margin-top: 12px;
+  }
+
+  .error {
+    color: red;
+    font-size: 0.9em;
+  }
+
+  button {
+    width: 100%;
+    background-color: #0077cc;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #005fa3;
+  }
+</style>
+</head>
+
+<body>
+  <div class="form-container">
+    <h2>Cricket Tournament Registration</h2>
+    <form id="cricketForm" onsubmit="return validateForm()">
+      
+      <label>Player Name:</label>
+      <input type="text" id="playerName" placeholder="Enter your full name">
+      <span id="nameError" class="error"></span>
+
+      <label>Email:</label>
+      <input type="text" id="email" placeholder="example@gmail.com">
+      <span id="emailError" class="error"></span>
+
+      <label>Age:</label>
+      <input type="number" id="age" placeholder="18" min="10" max="60">
+      <span id="ageError" class="error"></span>
+
+      <label>Gender:</label>
+      <div class="gender-group">
+        <label>Male</label><input type="radio" name="gender" value="Male"><br> 
+        <label>Female</label><input type="radio" name="gender" value="Female"> 
+      </div>
+      <span id="genderError" class="error"></span>
+
+      <label>Team Name:</label>
+      <input type="text" id="teamName" placeholder="Enter your team name">
+      <span id="teamError" class="error"></span>
+
+      <label>Batting Style:</label>
+      <select id="battingStyle">
+        <option value="">Select</option>
+        <option value="Right-Hand Bat">Right-Hand Bat</option>
+        <option value="Left-Hand Bat">Left-Hand Bat</option>
+      </select>
+      <span id="batError" class="error"></span>
+
+      <label>Bowling Style:</label>
+      <select id="bowlingStyle">
+        <option value="">Select</option>
+        <option value="Right-Arm Fast">Right-Arm Fast</option>
+        <option value="Left-Arm Spin">Left-Arm Spin</option>
+        <option value="Right-Arm Off Spin">Right-Arm Off Spin</option>
+      </select>
+      <span id="bowlError" class="error"></span>
+
+      <label>Contact Number:</label>
+      <input type="text" id="contact" placeholder="10-digit number">
+      <span id="contactError" class="error"></span>
+
+      <label>Match Date:</label>
+      <input type="date" id="matchDate" required>
+
+      <label>Jersey Number:</label>
+      <input type="number" id="jersey" min="1" max="99" required>
+
+      <label>Country:</label>
+      <input type="text" id="country" pattern="[A-Za-z\s]+" required>
+
+      <label>Upload Profile Photo:</label>
+      <input type="file" id="photo" accept="image/*" required>
+
+      <div class="checkbox-group">
+        <input type="checkbox" required> I agree to terms & conditions
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+<script>
+function validateForm() {
+  let valid = true;
+  document.querySelectorAll(".error").forEach(e => e.textContent = "");
+
+  const name = document.getElementById("playerName").value.trim();
+  if (name.length < 3) {
+    document.getElementById("nameError").textContent = "Enter a valid name (min 3 letters)";
+    valid = false;
+  }
+
+  const email = document.getElementById("email").value.trim();
+  const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+  if (!emailPattern.test(email)) {
+    document.getElementById("emailError").textContent = "Enter a valid email address";
+    valid = false;
+  }
+
+  const age = document.getElementById("age").value;
+  if (age < 10 || age > 60 || age === "") {
+    document.getElementById("ageError").textContent = "Age must be between 10 and 60";
+    valid = false;
+  }
+
+  const gender = document.querySelector('input[name="gender"]:checked');
+  if (!gender) {
+    document.getElementById("genderError").textContent = "Please select gender";
+    valid = false;
+  }
+
+  const team = document.getElementById("teamName").value.trim();
+  if (team === "") {
+    document.getElementById("teamError").textContent = "Team name cannot be empty";
+    valid = false;
+  }
+
+  const bat = document.getElementById("battingStyle").value;
+  if (bat === "") {
+    document.getElementById("batError").textContent = "Select a batting style";
+    valid = false;
+  }
+
+  const bowl = document.getElementById("bowlingStyle").value;
+  if (bowl === "") {
+    document.getElementById("bowlError").textContent = "Select a bowling style";
+    valid = false;
+  }
+
+  const contact = document.getElementById("contact").value.trim();
+  const contactPattern = /^[0-9]{10}$/;
+  if (!contactPattern.test(contact)) {
+    document.getElementById("contactError").textContent = "Enter a valid 10-digit number";
+    valid = false;
+  }
+
+  return valid;
+}
+</script>
+
+</body>
+</html>

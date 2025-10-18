@@ -1,0 +1,44 @@
+/* External CSS for ex3c */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f8ff;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+header {
+  background-color: #0056b3;
+  color: white;
+  padding: 15px;
+}
+
+.gallery {
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.gallery img {
+  width: 250px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #0077cc;
+}
+
+footer {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #0077cc;
+  color: white;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: underline;
+  margin-left: 10px;
+}
