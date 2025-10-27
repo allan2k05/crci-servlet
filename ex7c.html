@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Favorite Cricket Format (Hidden Fields)</title>
+    <title>Ex7c - Hidden Form Fields</title>
 </head>
-<body>
-    <h2>Select your favorite cricket format:</h2>
-    <form method="POST" action="ex7c">
-        <select name="format">
-            <option value="Test">Test</option>
-            <option value="ODI">ODI</option>
-            <option value="T20">T20</option>
-        </select>
-        <input type="hidden" name="step" value="1">
-        <input type="submit" value="Next">
+<body bgcolor="#e6ffe6">
+    <h2 align="center">Cricket Player Login (Using Hidden Form Fields)</h2>
+    <form action="ex7c_login" method="post" align="center">
+        <label>Enter Player Name:</label>
+        <input type="text" name="username" required><br><br>
+        <input type="submit" value="Login">
     </form>
 </body>
 </html>
