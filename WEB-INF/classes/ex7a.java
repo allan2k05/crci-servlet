@@ -1,59 +1,26 @@
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-public class ex7a extends HttpServlet {
+public class ex7a_login extends HttpServlet {
+   public ex7a_login() {
+   }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-
-        Cookie[] cookies = request.getCookies();
-        String favoritePlayer = null;
-
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if ("favoritePlayer".equals(cookie.getName())) {
-                    favoritePlayer = cookie.getValue();
-                }
-            }
-        }
-
-        out.println("<html><body>");
-        if (favoritePlayer == null) {
-            // If no cookie, redirect to form page (index.html)
-            response.sendRedirect("ex7a.html");
-        } else {
-            out.println("<h2>Your favorite cricket player is: " + favoritePlayer + "</h2>");
-            out.println("<a href='ex7a?clear=true'>Change Selection</a>");
-        }
-        out.println("</body></html>");
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        String player = request.getParameter("player");
-        if (player != null) {
-            Cookie cookie = new Cookie("favoritePlayer", player);
-            cookie.setMaxAge(60 * 60); // expires in 1 hour
-            response.addCookie(cookie);
-        }
-        response.sendRedirect("ex7a");
-    }
-
-    @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        if ("true".equals(request.getParameter("clear"))) {
-            Cookie cookie = new Cookie("favoritePlayer", "");
-            cookie.setMaxAge(0);
-            response.addCookie(cookie);
-            response.sendRedirect("ex7a.html");
-        } else {
-            super.service(request, response);
-        }
-    }
+   public void doPost(HttpServletRequest var1, HttpServletResponse var2) throws ServletException, IOException {
+      var2.setContentType("text/html");
+      PrintWriter var3 = var2.getWriter();
+      String var4 = var1.getParameter("username");
+      Cookie var5 = new Cookie("playerName", var4);
+      var2.addCookie(var5);
+      var3.println("<html><body bgcolor='#e6f0ff'>");
+      var3.println("<h2>Welcome " + var4 + "!</h2>");
+      var3.println("<p>Cookie created successfully.</p>");
+      var3.println("<a href='ex7a_welcome'>Go to Welcome Page</a>");
+      var3.println("</body></html>");
+   }
 }
